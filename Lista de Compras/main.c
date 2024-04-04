@@ -17,7 +17,7 @@ Comida *cria(){
   if(lista == NULL){
     exit(1);
   }
-  
+
   lista->prox = NULL; //inicializa lista
 
   return lista;
@@ -58,7 +58,7 @@ void insere(Comida *lista, char *itemc){
 }
 
 void ordenar(Comida **pLista){
-  
+
   //Se a lista estiver vazia ou com apenas um elemento não tem o que ordenar
   if((*pLista)->prox == NULL || ((*pLista)->prox)->prox == NULL){
     return;
@@ -89,7 +89,7 @@ void ordenar(Comida **pLista){
 
 void imprime(Comida *lista) {
   Comida *aux;
-  
+
   for (aux = lista->prox; aux != NULL; aux = aux->prox){
     printf ("%s ", aux->item);
   }
@@ -104,8 +104,6 @@ void libera(Comida *lista) {
       lista->prox = aux->prox;
       free(aux);
     }
-
-  free(lista); //Libera cabeça da lista
 }
 
 
@@ -113,7 +111,7 @@ int main() {
   int n;
   char linha[20001], *itemc;
   Comida *lista;
-  
+
   scanf("%d", &n);
 
   //Confere n válido
@@ -121,9 +119,10 @@ int main() {
     exit(1);
   }
 
+  lista = cria();
+
   // Loop - Casos teste
   for (int i = 0; i < n; i++) {
-    lista = cria();
     scanf(" %[^\n]", linha);
     getchar();
 
@@ -139,9 +138,11 @@ int main() {
 
     //Imprime
     imprime(lista);
-    
+
     libera(lista);
     }
-  
+
+    free(lista); //Libera a cabeça da lista
+
     return 0;
 }
