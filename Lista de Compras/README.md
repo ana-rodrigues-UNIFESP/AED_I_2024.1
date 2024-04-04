@@ -20,6 +20,6 @@ A saída contém N linhas, cada uma representando uma das listas de compras de V
 
 | **Exemplo de entrada** | **Exemplo de saída** |
 |------------------------|----------------------|
-|2                       |carne laranja picles suco|
-|carne laranja suco picles laranja picles|laranja pera|
-|laranja pera laranja pera pera||
+|2                       ||
+|carne laranja suco picles laranja picles|carne laranja picles suco|
+|laranja pera laranja pera pera|laranja pera|
