@@ -23,7 +23,7 @@ Comida *cria(){
   return lista;
 }
 
-// Confere se o item já está na lista
+//Recebe a lista e o item atual, verifica se o item já está inserido na lista e retorna 1 para "repetido" e 0 para "não repetido"
 int buscaRepeticao(Comida *lista, char *itemc){
   Comida *copiaLista;
   copiaLista = lista->prox;
@@ -34,10 +34,10 @@ int buscaRepeticao(Comida *lista, char *itemc){
     }
       copiaLista = copiaLista->prox;
   }
-
   return 0;
 }
 
+// Recebe a lista e o item atual e se a função busca repetição for "0" insere o elemento na lista
 void insere(Comida *lista, char *itemc){
 
   //Se a função busca retorna 1 o item já está na lista e não deve ser inserido
@@ -48,15 +48,18 @@ void insere(Comida *lista, char *itemc){
   //Caso não seja repetido insere
   Comida *nova = (Comida *) malloc (sizeof(Comida));
 
+ //Se não foi possível alocar memória
   if(nova == NULL){
     exit(1);
-  } //Se não foi possível alocar memória
+  } 
 
   strcpy(nova->item, itemc);
   nova->prox= lista->prox;
   lista->prox= nova;
 }
 
+
+//Recebe a lista e ordena em ordem alfabética
 void ordenar(Comida **pLista){
 
   //Se a lista estiver vazia ou com apenas um elemento não tem o que ordenar
@@ -66,7 +69,7 @@ void ordenar(Comida **pLista){
 
   Comida *aux = *pLista, *aux2;
 
-  char temp_nome[21]; //Armazena o nome durante a troca
+  char temp_nome[21]; 
 
   //Loop percorre lista
   while(aux != NULL) {
@@ -87,15 +90,22 @@ void ordenar(Comida **pLista){
   }
 }
 
+// recebe a lista e imprime item por item 
 void imprime(Comida *lista) {
   Comida *aux;
 
   for (aux = lista->prox; aux != NULL; aux = aux->prox){
-    printf ("%s ", aux->item);
+    if(aux->prox==NULL){ //Se for o último item da lista não imlrime o espaço
+        printf ("%s", aux->item);
+        printf("\n");
+    }
+    else{ 
+        printf ("%s ", aux->item);
+    }
   }
-  printf("\n");
 }
 
+//Recebe a lista e libera a memória alocada
 void libera(Comida *lista) {
     Comida *aux;
 
